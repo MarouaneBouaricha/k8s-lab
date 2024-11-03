@@ -1,5 +1,5 @@
 # k8s-lab
-Deploy a microservice app (based on weather api) as part of learning k8s
+Deploying a microservice app (based on weather api) as part of learning k8s
 
 ## Environment
 ```shell
@@ -25,4 +25,16 @@ kubectl create secret generic mysql-secret \
   --from-literal=auth-password='<password-for-auth-user>' \
   --from-literal=secret-key='<secret-for-jwt>' \
   -n weather-app
+```
+### Generate self-signed certificates for ingress
+```shell
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.crt -subj "/CN=weatherapp.local/O=weatherapp"
+```
+### Create a tls secret
+```shell
+kubectl create secret tls weatherapp-ui-tls --cert=tls.crt --key=tls.key
+```
+### Apply Manifests
+```shell
+kubectl apply -f k8s/
 ```
