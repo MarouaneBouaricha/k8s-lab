@@ -36,7 +36,13 @@ kubectl create secret tls weatherapp-ui-tls --cert=tls.crt --key=tls.key
 ```
 ### Apply Manifests
 ```shell
+kubectl apply -f k8s/auth/mysql
 kubectl apply -f k8s/auth
+```
+Modify secret.yaml to add your RAPIDAPI KEY
+```shell
 kubectl apply -f k8s/weather
+```
+```shell
 kubectl apply -f k8s/ui
 ```
