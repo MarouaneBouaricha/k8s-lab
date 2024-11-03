@@ -36,5 +36,7 @@ kubectl create secret tls weatherapp-ui-tls --cert=tls.crt --key=tls.key
 ```
 ### Apply Manifests
 ```shell
-kubectl apply -f k8s/
+kubectl apply -f k8s/auth
+kubectl apply -f k8s/weather
+kubectl apply -f k8s/ui
 ```
